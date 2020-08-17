@@ -1,6 +1,6 @@
-package com.codecool.sixhandshakes;
+package com.codecool;
 
-import com.codecool.sixhandshakes.model.UserNode;
+import com.codecool.model.UserNode;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;

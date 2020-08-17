@@ -1,4 +1,4 @@
-package com.codecool.sixhandshakes.model;
+package com.codecool.model;
 
 import java.util.HashSet;
 import java.util.Objects;

@@ -1,6 +1,6 @@
-package com.codecool.sixhandshakes.finders;
+package com.codecool.finders;
 
-import com.codecool.sixhandshakes.model.UserNode;
+import com.codecool.model.UserNode;
 
 import java.util.*;
 
@@ -31,11 +31,19 @@ public class FriendsOfFriendsFinder {
         if (currentDistance < distance) {
             Set<UserNode> friends = userNode.getFriends();
             for (UserNode friendNode: friends) {
-                if (!(nodeVisited.contains(friendNode) || nodeToVisit.contains(friendNode))) {
-                    nodeToVisit.add(friendNode);
-                    distanceStore.put(friendNode, currentDistance + 1);
+                if (isNotExaminedYet(friendNode)) {
+                    addToExamineQueue(currentDistance, friendNode);
                 }
             }
         }
+    }
+
+    private static void addToExamineQueue(int currentDistance, UserNode friendNode) {
+        nodeToVisit.add(friendNode);
+        distanceStore.put(friendNode, currentDistance + 1);
+    }
+
+    private static boolean isNotExaminedYet(UserNode friendNode) {
+        return !(nodeVisited.contains(friendNode) || nodeToVisit.contains(friendNode));
     }
 }

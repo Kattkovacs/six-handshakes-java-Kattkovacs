@@ -1,17 +1,17 @@
-package com.codecool.sixhandshakes.finders;
+package com.codecool.finders;
 
-import com.codecool.sixhandshakes.model.UserNode;
-import com.sun.nio.sctp.SendFailedNotification;
+import com.codecool.model.UserNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class HandshakeCalculator {
+
     static int minDistance;
 
     public static Optional<Integer> getMinimumHandshakesBetween(UserNode start, UserNode end) {
-        minDistance = 0;
+        minDistance = -1;
         List<UserNode> trackingPath = new ArrayList<>();
         trackingPath.add(start);
         Optional<Integer> distance = Optional.empty();
@@ -24,8 +24,8 @@ public class HandshakeCalculator {
         UserNode lastNode = trackingPath.get(trackingPath.size() - 1);
         if (endNode.equals(lastNode)) {
             minDistance = depth;
-        } else if (minDistance == 0 || depth + 1 < minDistance) {
-            for (UserNode nextNode : lastNode.getFriends()) {
+        } else if (minDistance == -1 || depth + 1 < minDistance) {
+            for (UserNode nextNode: lastNode.getFriends()) {
                 if (!trackingPath.contains(nextNode)) {
                     trackingPath.add(nextNode);
                     findPath(trackingPath, endNode, depth + 1);

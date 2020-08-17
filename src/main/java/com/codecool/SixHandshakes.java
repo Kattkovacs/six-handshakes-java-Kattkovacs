@@ -1,9 +1,9 @@
-package com.codecool.sixhandshakes;
+package com.codecool;
 
-import com.codecool.sixhandshakes.finders.FriendChainCalculator;
-import com.codecool.sixhandshakes.finders.FriendsOfFriendsFinder;
-import com.codecool.sixhandshakes.finders.HandshakeCalculator;
-import com.codecool.sixhandshakes.model.UserNode;
+import com.codecool.finders.FriendChainCalculator;
+import com.codecool.finders.FriendsOfFriendsFinder;
+import com.codecool.finders.HandshakeCalculator;
+import com.codecool.model.UserNode;
 
 import java.util.*;
 
@@ -62,7 +62,7 @@ public class SixHandshakes {
         printMenu(menuItems);
         Integer choose = chooseMenuItem(menuItems.keySet());
         switch (choose) {
-            case 1: minimumHandShakes();
+            case 1: minimumHandshakes();
                 break;
             case 2: friendsOfFriends();
                 break;
@@ -74,10 +74,14 @@ public class SixHandshakes {
     private static void shortestRoutes() {
         UserNode startNode = getUserByGivenName();
         UserNode endNode = getUserByGivenName();
-        printRoutes(FriendChainCalculator.getShortestRoutesBetween(startNode, endNode));
+        List<List<UserNode>> shortestPaths = FriendChainCalculator.getShortestRoutesBetween(startNode, endNode);
+        printRoutes(shortestPaths);
+        for (List<UserNode> path : shortestPaths) {
+            graphPlotter.highlightRoute(path);
+        }
     }
 
-    private static void minimumHandShakes() {
+    private static void minimumHandshakes() {
         UserNode startNode = getUserByGivenName();
         UserNode endNode = getUserByGivenName();
         Optional<Integer> distance = HandshakeCalculator.getMinimumHandshakesBetween(startNode, endNode);

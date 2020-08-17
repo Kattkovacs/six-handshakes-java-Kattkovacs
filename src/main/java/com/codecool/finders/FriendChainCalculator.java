@@ -1,12 +1,13 @@
-package com.codecool.sixhandshakes.finders;
+package com.codecool.finders;
 
-import com.codecool.sixhandshakes.model.UserNode;
+import com.codecool.model.UserNode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class FriendChainCalculator {
+
     static int minDistance;
     static List<List<UserNode>> shortestPaths;
 
@@ -24,8 +25,9 @@ public class FriendChainCalculator {
         if (endNode.equals(lastNode)) {
             if (depth < minDistance) shortestPaths = new ArrayList<>();
             minDistance = depth;
+            shortestPaths.add(List.copyOf(trackingPath));
         } else if (minDistance == -1 || depth < minDistance) {
-            for (UserNode nextNode : lastNode.getFriends()) {
+            for (UserNode nextNode: lastNode.getFriends()) {
                 if (!trackingPath.contains(nextNode)) {
                     trackingPath.add(nextNode);
                     findPath(trackingPath, endNode, depth + 1);
@@ -34,5 +36,4 @@ public class FriendChainCalculator {
             }
         }
     }
-
 }
