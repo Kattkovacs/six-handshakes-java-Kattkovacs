@@ -38,6 +38,10 @@ public class UserNode {
         return lastName;
     }
 
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     public String toString() {
         return firstName + "_" + lastName + " (" + id + ")";
     }
