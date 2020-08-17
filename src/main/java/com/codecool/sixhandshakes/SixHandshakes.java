@@ -62,13 +62,19 @@ public class SixHandshakes {
         printMenu(menuItems);
         Integer choose = chooseMenuItem(menuItems.keySet());
         switch (choose) {
-            case 1: //func1
+            case 1: minimumHandShakes();
                 break;
             case 2: friendsOfFriends();
                 break;
-            case 3: //func3
+            case 3: shortestRoutes();
                 break;
         }
+    }
+
+    private static void shortestRoutes() {
+        UserNode startNode = getUserByGivenName();
+        UserNode endNode = getUserByGivenName();
+        printRoutes(FriendChainCalculator.getShortestRoutesBetween(startNode, endNode));
     }
 
     private static void minimumHandShakes() {

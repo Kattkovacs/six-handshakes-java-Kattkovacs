@@ -16,7 +16,7 @@ public class HandshakeCalculator {
         trackingPath.add(start);
         Optional<Integer> distance = Optional.empty();
         findPath(trackingPath, end, 0);
-        if (minDistance > 0) distance = Optional.of(minDistance);
+        if (minDistance > -1) distance = Optional.of(minDistance);
         return distance;
     }
 
